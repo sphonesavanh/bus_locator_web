@@ -50,6 +50,12 @@ const Trip = () => {
   useEffect(() => {
     document.title = "Trips | Bus Tracking System";
     loadData();
+
+    const interval = setInterval(() => {
+      loadData();
+    }, 10000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const filteredTrips = trips.filter(
@@ -69,7 +75,7 @@ const Trip = () => {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
-    setCurrentPage(1)
+    setCurrentPage(1);
   };
 
   const handleOpenAdd = () => {
@@ -87,7 +93,7 @@ const Trip = () => {
       method: "DELETE",
     });
     const updated = await fetchTrip();
-    setTrips(updated)
+    setTrips(updated);
   };
 
   const handleSave = async (data: TripData, id?: string) => {

@@ -94,7 +94,7 @@ export const BusTypeReportDocument: React.FC<ReportProps> = ({
     <Page style={styles.page}>
       <Text style={styles.title}>ລາຍງານປະເພດລົດເມ</Text>
       <Text style={styles.subtitle}>
-        Lot {lotNumber} · Date: {date}
+        ຊຸດທີ {lotNumber} · ວັນທີ: {date}
       </Text>
 
       <View style={styles.headerRow}>

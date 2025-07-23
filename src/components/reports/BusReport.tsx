@@ -61,9 +61,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  count: {
+    marginTop: 12,
+    fontSize: 10,
+  },
+  signatureRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 24,
+  },
   signature: {
     marginTop: 24,
-    fontSize: 10,
+    marginLeft: 48,
+    marginRight: 48,
+    fontSize: 12,
     textAlign: "center",
   },
 });
@@ -83,7 +94,7 @@ export const BusReportDocument: React.FC<ReportProps> = ({
     <Page style={styles.page}>
       <Text style={styles.title}>ລາຍງານລົດເມ</Text>
       <Text style={styles.subtitle}>
-        Lot {lotNumber} · Date: {date}
+        ຊຸດທີ {lotNumber} · ວັນທີ: {date}
       </Text>
 
       <View style={styles.headerRow}>

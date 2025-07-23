@@ -35,6 +35,14 @@ const Driver = () => {
     fetchDrivers()
       .then(setDrivers)
       .catch((error) => console.error(error));
+
+    fetchDrivers();
+
+    const Interval = setInterval(() => {
+      fetchDrivers();
+    }, 10000);
+
+    return () => clearInterval(Interval);
   }, []);
 
   const filteredDrivers = drivers.filter(

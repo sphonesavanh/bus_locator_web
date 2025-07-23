@@ -93,7 +93,7 @@ export const ScheduleReportDocument: React.FC<ReportProps> = ({
     <Page style={styles.page}>
       <Text style={styles.title}>ລາຍງານຕາຕະລາງລົດເມ</Text>
       <Text style={styles.subtitle}>
-        Lot {lotNumber} · ວັນທີ: {date}
+        ຊຸດທີ {lotNumber} · ວັນທີ: {date}
       </Text>
 
       <View style={styles.headerRow}>

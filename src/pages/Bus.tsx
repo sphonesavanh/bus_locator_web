@@ -33,6 +33,14 @@ const Bus = () => {
   useEffect(() => {
     document.title = "Bus | Bus Tracking System";
     fetchBus().then(setBus).catch(console.error);
+
+    fetchBus();
+
+    const Interval = setInterval(() => {
+      fetchBus();
+    }, 10000);
+
+    return () => clearInterval(Interval);
   }, []);
 
   const filteredBusData = bus.filter(

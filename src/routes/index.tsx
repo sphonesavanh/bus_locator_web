@@ -11,7 +11,6 @@ import Trip from "@/pages/Trip";
 import Schedule from "@/pages/Schedule";
 import Users from "@/pages/Users";
 import LostNFound from "@/pages/LostNFound";
-import BusLiveMap from "@/pages/BusLocation";
 import LogIn from "@/pages/LogIn";
 import Signup from "@/pages/Signup";
 import ProtectedRoutes from "@/ProtectedRoutes";
@@ -137,16 +136,6 @@ const router = createBrowserRouter([
       <ProtectedRoutes>
         <MainLayout>
           <LostNFound />
-        </MainLayout>
-      </ProtectedRoutes>
-    ),
-  },
-  {
-    path: "/bus-live-map",
-    element: (
-      <ProtectedRoutes>
-        <MainLayout>
-          <BusLiveMap />
         </MainLayout>
       </ProtectedRoutes>
     ),

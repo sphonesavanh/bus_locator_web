@@ -1,7 +1,10 @@
 export interface LostNFoundData {
   lost_id: string;
+  route_id: string;
   route_name: string;
+  bus_id: string;
   bus_plate: string;
+  user_id: string;
   user_name: string;
   user_email: string;
   user_tel: string;
@@ -15,6 +18,7 @@ export interface LostNFoundSubmitData {
   bus_id: string;
   user_id: string;
   description: string;
+  status: string;
 }
 
 export async function fetchLostNFound(): Promise<LostNFoundData[]> {

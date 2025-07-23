@@ -33,6 +33,12 @@ const Dashboard = () => {
   useEffect(() => {
     document.title = "Dashboard | Bus Locator";
     loadData();
+
+    const interval = setInterval(() => {
+      loadData();
+    }, 10000); // Refresh every 10 seconds
+
+    return () => clearInterval(interval);
   }, []);
 
   const loadData = async () => {

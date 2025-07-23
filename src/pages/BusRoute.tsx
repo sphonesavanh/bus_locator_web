@@ -41,6 +41,14 @@ const BusRoute = () => {
     fetchBusRoutes()
       .then(setBusRoutes)
       .catch((error) => console.error(error));
+
+    fetchBusRoutes();
+
+    const Interval = setInterval(() => {
+      fetchBusRoutes();
+    }, 10000);
+
+    return () => clearInterval(Interval);
   }, []);
 
   const filteredBusRoutes = busRoutes.filter(

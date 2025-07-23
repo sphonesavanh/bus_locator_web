@@ -1,42 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Tracking from "./Tracking";
+import { useActiveBuses } from "@/contexts/ActiveBusContext"; // ✅ global polling context
 
-interface ActiveTrip {
-  trip_id: string;
-  route_id: string;
-}
+export default function LiveTrackingPage() {
+  const [selectedRoute, setSelectedRoute] = useState("R001"); // Default route
+  const activeBuses = useActiveBuses();
 
-export default function LiveTrackingPage({ busId }: { busId: string }) {
-  const [selectedRoute, setSelectedRoute] = useState("R_ALL");
-  const [activeTrip, setActiveTrip] = useState<ActiveTrip | null>(null);
-  const [loadingTrip, setLoadingTrip] = useState(false);
+  // 🛡 Safeguard: Check if activeBuses is an array
+  const buses = Array.isArray(activeBuses) ? activeBuses : [];
 
-  // fetch current trip by busId
-  useEffect(() => {
-    if (!busId) return;
-    setLoadingTrip(true);
-
-    fetch(`http://localhost:4000/api/tracking/current/${busId}`)
-      .then((r) => {
-        if (!r.ok) throw new Error("No active trip");
-        return r.json() as Promise<ActiveTrip>;
-      })
-      .then((trip) => {
-        setActiveTrip(trip);
-        setSelectedRoute(trip.route_id);
-      })
-      .catch(() => setActiveTrip(null))
-      .finally(() => setLoadingTrip(false));
-  }, [busId]);
-
-  if (loadingTrip) return <div>Loading trip…</div>;
+  // Filter buses for the selected route
+  const busOnRoute = buses.find((bus) => bus.route_id === selectedRoute);
 
   return (
     <div className="relative w-full h-full">
       <Tracking
         routeId={selectedRoute}
-        trip_id={activeTrip?.trip_id}
-        pollInterval={3000}
+        trip_id={busOnRoute?.trip_id} // ✅ Only pass trip_id if active bus exists
+        pollInterval={3000} // ✅ still optional
       />
 
       {/* Route selector at top-left */}
@@ -50,11 +31,10 @@ export default function LiveTrackingPage({ busId }: { busId: string }) {
           className="block w-40 bg-white text-gray-900 border border-gray-300 rounded-md p-2
                      focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          <option>ເລືອກເສັ້ນທາງ</option>
           <option value="R001">ຕະຫຼາດເຊົ້າ - ທ່າເດື່ອ - ຂົວມິດຕະພາບ</option>
           <option value="R001-1">ຂົວມິດຕະພາບ - ທ່າເດື່ອ - ຕະຫຼາດເຊົ້າ</option>
           <option value="R002">ຕະຫຼາດເຊົ້າ - ທ່າງ່ອນ</option>
-          <option value="R002-1">ທ່າງອນ - ຕະຫຼາດເຊົ້າ</option>
+          <option value="R002-1">ທ່າງ່ອນ - ຕະຫຼາດເຊົ້າ</option>
         </select>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import busIcon from "@/assets/bus-icon.png";
-import useAuth from "../hooks/useAuth"; // Make sure the path is correct
+import Logo from "@/assets/logo-white3.png";
+import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
 const LogIn: React.FC = () => {
@@ -14,22 +14,23 @@ const LogIn: React.FC = () => {
   const handleLogin = async () => {
     try {
       const success = await login(username, password);
-      
+
       if (success) {
         navigate("/dashboard"); // Redirect to dashboard on success
       } else {
         setMessage("Invalid Username or Password ❌");
       }
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setMessage("❌ " + (error.message || "Login failed."));
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-(--my-color)">
-      <div className="flex flex-col items-center space-y-4">
-        <img src={busIcon} alt="Bus Icon" className="w-32 h-32 mb-2" />
+    <div className="min-h-screen flex flex-col justify-between bg-(--my-color)">
+      {/* Centered Content */}
+      <div className="flex flex-1 flex-col justify-center items-center space-y-4">
+        <img src={Logo} alt="Logo" className="w-40 h-40 mb-5" />
 
         <input
           type="text"
@@ -39,18 +40,18 @@ const LogIn: React.FC = () => {
           className="w-72 px-4 py-2 rounded-md bg-white border-1 border-white shadow-md text-black"
         />
 
-        <div className="relative w-full">
+        <div className="relative w-72">
           <input
             type={showPassword ? "text" : "password"}
             placeholder="ລະຫັດຜ່ານ..."
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-72 px-4 py-2 rounded-md bg-white border-1 border-white shadow-md text-black"
+            className="w-full px-4 py-2 rounded-md bg-white border-1 border-white shadow-md text-black"
           />
           <button
             type="button"
             onClick={() => setShowPassword((prev) => !prev)}
-            className="absolute inset-y-0 right-2 flex items-center text-white text-sm"
+            className="absolute inset-y-0 right-2 flex items-center text-gray-600 text-sm"
           >
             {showPassword ? "🙈" : "👁️"}
           </button>
@@ -66,6 +67,14 @@ const LogIn: React.FC = () => {
 
         {message && <p className="text-white text-sm">{message}</p>}
       </div>
+
+      {/* Footer */}
+      <p className="text-center text-white text-s mb-2">
+        Department of Computer Engineering, Faculty of Engineering, NUOL
+      </p>
+      <p className="text-center text-white text-xs mb-2">
+        Developed by: Phonesavanh CHANSOMPHOU, David PHANTHAVONG
+      </p>
     </div>
   );
 };

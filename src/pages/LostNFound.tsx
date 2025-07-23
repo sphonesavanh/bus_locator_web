@@ -93,6 +93,17 @@ const LostNFound = () => {
         )
       )
       .catch(console.error);
+
+    fetchLostNFound();
+
+    const Interval = setInterval(() => {
+      fetchLostNFound()
+        .then((data) => setLostNFound(data))
+        .catch(console.error);
+    }, 10000);
+
+
+    return () => clearInterval(Interval);
   }, []);
 
   const filteredLostNFoundData = lostNFound.filter((lost) =>

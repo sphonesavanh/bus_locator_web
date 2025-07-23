@@ -36,6 +36,12 @@ const Schedule: React.FC = () => {
   useEffect(() => {
     document.title = "Schedule | Bus Tracking System";
     loadData();
+
+    const interval = setInterval(() => {
+      loadData();
+    }, 10000); // Refresh every 10 seconds
+
+    return () => clearInterval(interval);
   }, []);
 
   const loadData = async () => {

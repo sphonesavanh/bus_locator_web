@@ -1,5 +1,6 @@
 import { AppRouter } from "@/routes";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ActiveBusProvider } from "./contexts/ActiveBusContext";
 
 function App() {
   const theme = createTheme({
@@ -9,9 +10,11 @@ function App() {
     },
   });
   return (
-    <ThemeProvider theme={theme}>
-      <AppRouter />
-    </ThemeProvider>
+    <ActiveBusProvider>
+      <ThemeProvider theme={theme}>
+        <AppRouter />
+      </ThemeProvider>
+    </ActiveBusProvider>
   );
 }
 

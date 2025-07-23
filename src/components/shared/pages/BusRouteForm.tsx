@@ -21,10 +21,17 @@ const BusRouteForm: React.FC<Props> = ({ initialData, onClose, onSave }) => {
 
   const handleSubmit = () => {
     onSave({ id, name }, initialData?.id);
-  }
+  };
 
   return (
     <Stack spacing={2}>
+      <TextField
+        label="ລະຫັດເສັ້ນທາງ"
+        value={id}
+        onChange={(e) => setId(e.target.value)}
+        fullWidth
+      />
+
       <TextField
         label="ຊື່ເສັ້ນທາງ"
         value={name}
@@ -39,6 +46,6 @@ const BusRouteForm: React.FC<Props> = ({ initialData, onClose, onSave }) => {
       </Stack>
     </Stack>
   );
-}
+};
 
 export default BusRouteForm;

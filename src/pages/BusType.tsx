@@ -31,6 +31,12 @@ const BusType = () => {
   useEffect(() => {
     document.title = "Bus Type | Bus Tracking System";
     loadBusTypes();
+
+    const Interval = setInterval(() => {
+      loadBusTypes();
+    }, 10000);
+
+    return () => clearInterval(Interval);
   }, []);
 
   const loadBusTypes = async () => {

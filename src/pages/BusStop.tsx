@@ -51,6 +51,14 @@ const BusStop = () => {
         setLoading(false);
       }
     })();
+
+    fetchBusStops();
+
+    const Interval = setInterval(() => {
+      fetchBusStops();
+    }, 10000);
+
+    return () => clearInterval(Interval);
   }, []);
 
   // 1️⃣ Filter

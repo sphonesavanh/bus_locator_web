@@ -34,6 +34,14 @@ const Users = () => {
     fetchUsers()
       .then(setUsers)
       .catch((error) => console.error(error));
+
+    fetchUsers();
+
+    const Interval = setInterval(() => {
+      fetchUsers();
+    }, 10000);
+
+    return () => clearInterval(Interval);
   }, []);
 
   const filteredUsers = users.filter(
